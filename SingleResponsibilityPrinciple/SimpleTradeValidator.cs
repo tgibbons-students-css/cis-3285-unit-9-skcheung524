@@ -33,6 +33,17 @@ namespace SingleResponsibilityPrinciple
                 return false;
             }
 
+            if(tradeAmount < 1000)
+            {
+                logger.LogWarning("Trade amount is too small: {0}", tradeAmount);
+                return false;
+            }
+            if(tradeAmount > 1000000)
+            {
+                logger.LogWarning("Trade amount is too large: {0}", tradeAmount);
+                return false;
+            }
+
             decimal tradePrice;
             if (!decimal.TryParse(tradeData[2], out tradePrice))
             {
